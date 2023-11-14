@@ -1,0 +1,318 @@
+export const TopProductData = [
+    {
+        pid: 1,
+        title: 'Hoa Tulip Trắng',
+        price: 2300000,
+        slug: 'hoa-tulip-trang',
+        images: [
+            'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+        ],
+        description: 'Hoa Đẹp Chất Lượng',
+        discount: 10,
+    },
+    {
+        pid: 2,
+        title: 'Hoa Tulip Trắng',
+        price: 2300000,
+        slug: 'hoa-tulip-trang',
+        images: [
+            'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+        ],
+        description: 'Hoa Đẹp Chất Lượng',
+        discount: 10,
+    },
+    {
+        pid: 3,
+        title: 'Hoa Tulip Trắng',
+        price: 2300000,
+        slug: 'hoa-tulip-trang',
+        images: [
+            'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+        ],
+        description: 'Hoa Đẹp Chất Lượng',
+        discount: 10,
+    },
+    {
+        pid: 4,
+        title: 'Hoa Tulip Trắng',
+        price: 2300000,
+        slug: 'hoa-tulip-trang',
+        images: [
+            'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+        ],
+        description: 'Hoa Đẹp Chất Lượng',
+        discount: 10,
+    },
+    {
+        pid: 5,
+        title: 'Hoa Tulip Trắng',
+        price: 2300000,
+        slug: 'hoa-tulip-trang',
+        images: [
+            'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+        ],
+        description: 'Hoa Đẹp Chất Lượng',
+        discount: 10,
+    },
+    {
+        pid: 6,
+        title: 'Hoa Tulip Trắng',
+        price: 2300000,
+        slug: 'hoa-tulip-trang',
+        images: [
+            'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+        ],
+        description: 'Hoa Đẹp Chất Lượng',
+        discount: 10,
+    },
+    {
+        pid: 7,
+        title: 'Hoa Tulip Trắng',
+        price: 2300000,
+        slug: 'hoa-tulip-trang',
+        images: [
+            'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+        ],
+        description: 'Hoa Đẹp Chất Lượng',
+        discount: 10,
+    },
+    {
+        pid: 8,
+        title: 'Hoa Tulip Trắng',
+        price: 2300000,
+        slug: 'hoa-tulip-trang',
+        images: [
+            'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+        ],
+        description: 'Hoa Đẹp Chất Lượng',
+        discount: 10,
+    },
+]
+
+export const ListProductsData = {
+    page: 1,
+    total: 120,
+    totalPage: 6,
+    products: [
+        {
+            pid: 1,
+            title: 'Hoa Tulip Trắng Xuất Xứ Hà Lan',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 2,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 3,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 4,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 5,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 6,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 7,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 8,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 9,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 10,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 11,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 12,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 13,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 14,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 15,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 16,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 17,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 18,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 19,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+        {
+            pid: 20,
+            title: 'Hoa Tulip Trắng',
+            price: 2300000,
+            slug: 'hoa-tulip-trang',
+            images: [
+                'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
+            ],
+            description: 'Hoa Đẹp Chất Lượng',
+            discount: 10,
+        },
+    ],
+}
