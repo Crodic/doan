@@ -1,9 +1,13 @@
 import { Button, Grid, TextField } from '@mui/material'
 import { useFormik } from 'formik'
+import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
+import { stateAuth } from '~/redux/selector'
+import { fetchCreateFeedback } from '~/services/api'
 
 const FormFeedBack = () => {
+    const { accessToken } = useSelector(stateAuth)
     const formik = useFormik({
         initialValues: {
             firstname: '',
@@ -22,9 +26,15 @@ const FormFeedBack = () => {
                 .required('Vui Lòng Nhập Số Điện Thoại'),
             note: Yup.string().min(10, 'Nội Dung Quá Ngắn'),
         }),
-        onSubmit: e => {
-            console.log(e)
-            toast('🦄 Cảm Ơn Bạn Đã Đóng Góp Ý Kiến')
+        onSubmit: async e => {
+            try {
+                const res = await fetchCreateFeedback(accessToken, e)
+                if (res && res.status == 200) {
+                    toast('🦄 Cảm Ơn Bạn Đã Đóng Góp Ý Kiến')
+                }
+            } catch (error) {
+                console.log(error)
+            }
         },
     })
 

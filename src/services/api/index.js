@@ -129,3 +129,12 @@ export const fetchSearchProduct = search => {
         }
     )
 }
+
+export const fetchCreateFeedback = (token, data) => {
+    return authAxios.post('/feedback/index.php?action=feedback', data, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+}
