@@ -16,7 +16,7 @@ import { Box } from '@mui/material'
 
 export default function Carousel({ data }) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
-
+    const cloudinaryRegex = /cloudinary/i
     return (
         <Box>
             <Swiper
@@ -34,7 +34,7 @@ export default function Carousel({ data }) {
                 {data?.map((img, index) => {
                     return (
                         <SwiperSlide key={`came-img-${index}`}>
-                            <img src={img} />
+                            <img src={img && cloudinaryRegex.test(img) ? img : `http://localhost/mvc${img}`} />
                         </SwiperSlide>
                     )
                 })}
@@ -52,7 +52,7 @@ export default function Carousel({ data }) {
                 {data?.map((img, index) => {
                     return (
                         <SwiperSlide key={`came-img-${index}`}>
-                            <img src={img} />
+                            <img src={img && cloudinaryRegex.test(img) ? img : `http://localhost/mvc${img}`} />
                         </SwiperSlide>
                     )
                 })}

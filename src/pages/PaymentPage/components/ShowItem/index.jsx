@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 
 export default function ShowItem({ cart }) {
     const [cartHandle, setCartHandle] = useState(cart || null)
+    const cloudinaryRegex = /cloudinary/i
+
     const handleCartItem = () => {
         let newCart = cart?.map((item, index) => ({
             stt: index + 1,
@@ -49,7 +51,14 @@ export default function ShowItem({ cart }) {
                                 {row.stt}
                             </TableCell>
                             <TableCell align="right" sx={{ width: 150 }}>
-                                <img src={row.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img
+                                    src={
+                                        row.image && cloudinaryRegex.test(row.image)
+                                            ? row.image
+                                            : `http://localhost/mvc${row.image}`
+                                    }
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                />
                             </TableCell>
                             <TableCell align="right">{row.name}</TableCell>
                             <TableCell align="right">{row.price}</TableCell>

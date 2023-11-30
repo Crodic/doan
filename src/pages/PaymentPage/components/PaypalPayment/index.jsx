@@ -1,14 +1,18 @@
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { resetCart } from '~/redux/features/cartSlice'
+import { stateAuth, stateCart } from '~/redux/selector'
+import { fetchCreateOrder } from '~/services/api'
 
-const PaypalPayment = ({ amount, address, fullname }) => {
+const PaypalPayment = ({ amount, address, fullname, formValue }) => {
     const [format, setFormat] = useState([])
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const { accessToken } = useSelector(stateAuth)
+    const store = useSelector(stateCart)
 
     useEffect(() => {
         let split = address?.split(', ')
@@ -55,9 +59,27 @@ const PaypalPayment = ({ amount, address, fullname }) => {
                     const order = await action.order.capture()
                     const status = await order
                     if (status.status === 'COMPLETED') {
-                        dispatch(resetCart())
-                        toast('Thanh Toán Thành Công. Vui Lòng Chờ Admin Xác Nhận Đơn Hàng')
-                        navigate(`/order-detail/${1}`)
+                        try {
+                            const res = await fetchCreateOrder(accessToken, {
+                                fullname: fullname,
+                                phone_number: formValue?.phone,
+                                note: '(Trống)',
+                                total_money: store.total,
+                                payment_methods: 'paypal',
+                                address: address,
+                                email: formValue?.email,
+                                cart: store.cart,
+                            })
+                            if (res && res.status == 201) {
+                                toast('Thanh Toán Thành Công. Vui Lòng Chờ Admin Xác Nhận Đơn Hàng')
+                                dispatch(resetCart())
+                                navigate(`/order-detail/${res.data.order_id}`)
+                            }
+                        } catch (error) {
+                            toast.error('Thanh Toán Thất Bại. Vui Lòng Liên Hệ Với Cửa Hàng Để Được Giải Quyết')
+                        }
+                    } else {
+                        toast.warning('Internal Server Error !!')
                     }
                 }}
             />

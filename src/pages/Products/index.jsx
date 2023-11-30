@@ -5,11 +5,12 @@ import PaginateProduct from '~/components/Paginate'
 import { useSearchParams } from 'react-router-dom'
 import SelectOrderBy from './components/SelectOrderBy'
 import { useEffect, useState } from 'react'
-import { fetchProduct } from '~/services/api'
+import { fetchProduct, fetchSearchProduct } from '~/services/api'
 
 const ProductsPage = () => {
     const [searchParams] = useSearchParams()
     const search = searchParams.get('search')
+    const value = searchParams.get('value')
     const [products, setProducts] = useState([])
     const [category, setCategory] = useState(searchParams.get('category') || null)
     const [price, setPrice] = useState(searchParams.get('sort') || null)
@@ -17,11 +18,32 @@ const ProductsPage = () => {
     const [totalPage, setTotalPage] = useState(0)
 
     useEffect(() => {
-        let filter = { page: page }
-        if (category) filter = { ...filter, category: category }
-        if (price) filter = { ...filter, sort: price }
-        fetchAllProduct(filter)
-    }, [page, price, category])
+        if (!search && !value) {
+            let filter = { page: page }
+            if (category) filter = { ...filter, category: category }
+            if (price) filter = { ...filter, sort: price }
+            fetchAllProduct(filter)
+        }
+    }, [page, price, category, search, value])
+
+    useEffect(() => {
+        if (search && value) {
+            fetchSearch()
+        }
+    }, [search, value])
+
+    const fetchSearch = async () => {
+        try {
+            let res = await fetchSearchProduct(value)
+            if (res && res.status === 200) {
+                setProducts(res.data.products)
+                setPage(res.data.page)
+                setTotalPage(res.data.totalPage)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const fetchAllProduct = async filter => {
         try {

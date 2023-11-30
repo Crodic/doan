@@ -1,14 +1,34 @@
 import { Box, Divider, Paper, Typography } from '@mui/material'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import Logo from '~/assets/images/came.svg'
+import { stateAuth } from '~/redux/selector'
+import { fetchGetOrder } from '~/services/api'
 
 const OrderPageDetail = () => {
     const { bid } = useParams()
+    const { accessToken } = useSelector(stateAuth)
     const [bill, setBill] = useState({})
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        fetchOrderById(accessToken, bid)
+    }, [bid])
+
+    console.log(bill)
+
+    const fetchOrderById = async (token, bid) => {
+        try {
+            const res = await fetchGetOrder(token, bid)
+            if (res && res.status == 200) {
+                setBill(res.data.order)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <>
@@ -35,37 +55,37 @@ const OrderPageDetail = () => {
                         <Box component="li" sx={{ mt: '10px' }}>
                             Mã Đơn Hàng:{' '}
                             <Typography component="span" p={5}>
-                                1
+                                {bill?.id}
                             </Typography>
                         </Box>
                         <Box component="li" sx={{ mt: '10px' }}>
                             Người Nhận:{' '}
                             <Typography component="span" p={5}>
-                                Crodic
+                                {bill?.fullname}
                             </Typography>
                         </Box>
                         <Box component="li" sx={{ mt: '10px' }}>
                             Tổng Số Sản Phẩm:{' '}
                             <Typography component="span" p={5}>
-                                12
+                                {bill?.total || 0}
                             </Typography>
                         </Box>
                         <Box component="li" sx={{ mt: '10px' }}>
                             Tổng Tiền:{' '}
                             <Typography component="span" color="pink">
-                                255000 VNĐ
+                                {bill?.total_money} VNĐ
                             </Typography>
                         </Box>
                         <Box component="li" sx={{ mt: '10px' }}>
                             Địa Chỉ Nhận Hàng:{' '}
                             <Typography component="span" color="red">
-                                OKAY
+                                {bill?.address}
                             </Typography>
                         </Box>
                         <Box component="li" sx={{ mt: '10px' }}>
                             Trạng Thái Đơn Hàng:{' '}
                             <Typography component="span" color="green">
-                                Chờ Xác nhân
+                                {bill?.status == 1 ? 'Chờ Xác Nhận' : bill?.status == 2 ? 'Đang Giao Hàng' : 'Đã Huỷ'}
                             </Typography>
                         </Box>
                     </Box>
@@ -74,7 +94,7 @@ const OrderPageDetail = () => {
                         <Typography color="red">Admin Store</Typography>
                     </Box>
                 </Paper>
-                <Typography variant="caption" textAlign="center">
+                <Typography variant="caption" textAlign="center" sx={{ width: '100%' }}>
                     Bạn có thể xem lại đơn hàng này và trạng thái đơn hàng trong phần thông tin user
                 </Typography>
             </Box>

@@ -174,12 +174,24 @@ const PaymentPage = () => {
             </Box>
             <Box sx={{ mt: 4, px: 7 }}>
                 {payment === 'offline' ? (
-                    <DefaultPayment />
+                    <DefaultPayment
+                        data={{
+                            fullname: userPayment?.fullname,
+                            address: userPayment?.address,
+                            phone_number: formValue?.phone,
+                            email: formValue?.email,
+                            payment_methods: 'trực tiếp',
+                            note: '(Trống)',
+                            cart: cart,
+                            total_money: total,
+                        }}
+                    />
                 ) : (
                     <PaypalPayment
                         amount={Math.round(total / 23500)}
                         fullname={userPayment?.fullname}
                         address={userPayment?.address}
+                        formValue={formValue}
                     />
                 )}
             </Box>

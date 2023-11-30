@@ -45,6 +45,7 @@ const BoxStyled = styled(Box)`
 
 const CartItem = ({ product }) => {
     const dispatch = useDispatch()
+    const cloudinaryRegex = /cloudinary/i
 
     const handleChangeQuantity = e => {
         const payload = {
@@ -87,7 +88,15 @@ const CartItem = ({ product }) => {
             }}
         >
             <Box sx={{ width: '40%', height: 'auto' }}>
-                <img src={product?.images[0]} alt="" style={{ width: '100%', height: '100%' }} />
+                <img
+                    src={
+                        product?.images[0] && cloudinaryRegex.test(product?.images[0])
+                            ? product?.images[0]
+                            : `http://localhost/mvc${product?.images[0]}`
+                    }
+                    alt=""
+                    style={{ width: '100%', height: '100%' }}
+                />
             </Box>
             <Stack spacing={1} flex={1}>
                 <Typography variant="body1" component="p" noWrap>

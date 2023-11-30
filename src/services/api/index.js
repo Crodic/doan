@@ -92,3 +92,40 @@ export const fetchProduct = params => {
 export const fetchProductById = id => {
     return Axios.get(`/product/index.php?action=get-product&pid=${id}`)
 }
+
+export const fetchCreateOrder = (token, data) => {
+    return authAxios.post('/order/index.php?action=create', data, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+}
+
+export const fetchGetOrder = (token, id) => {
+    return authAxios.get(`/order/index.php?action=get-order&id=${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+}
+
+export const fetchAllOrderByUser = token => {
+    return authAxios.get('/order/index.php?action=get-all-order', {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+}
+
+export const fetchSearchProduct = search => {
+    return Axios.post(
+        '/product/index.php?action=search&page=1&limit=20',
+        { title: search },
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        }
+    )
+}

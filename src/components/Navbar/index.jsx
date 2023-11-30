@@ -27,6 +27,7 @@ import { useNavigate } from 'react-router-dom'
 import { fetchLogoutUser } from '~/redux/features/userSlice'
 import { toast } from 'react-toastify'
 import AlertDialog from '../Alert'
+import { fetchSearchProduct } from '~/services/api'
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -73,6 +74,7 @@ export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null)
     const [openCart, setOpenCart] = useState(false)
     const [openMenu, setOpenMenu] = useState(false)
+    const [search, setSearch] = useState('')
     const { auth, uid } = useSelector(stateAuth)
     const { quantity } = useSelector(stateCart)
     const dispatch = useDispatch()
@@ -119,6 +121,18 @@ export default function Navbar() {
     const handleNavigateBill = () => {
         navigate(`/order/${1}`)
         handleCloseMenu()
+    }
+
+    const handleSearchProduct = async () => {
+        try {
+            const res = await fetchSearchProduct(search)
+            if (res) {
+                navigate(`/product?search=true&value=${search}`)
+                setSearch('')
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
     const renderMenu = (
         <Menu
@@ -220,6 +234,9 @@ export default function Navbar() {
                             placeholder="Tìm Kiếm Hoa"
                             inputProps={{ 'aria-label': 'search' }}
                             autoComplete="off"
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                            onKeyDown={e => e.key == 'Enter' && handleSearchProduct()}
                         />
                     </Search>
                     <Box sx={{ display: 'flex' }}>
