@@ -7,6 +7,7 @@ import CartItem from '~/components/CartItem'
 import React from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { formatCurrency } from '~/utilities/helper'
 
 export default function CartDrawer({ openCart, handleCloseCart }) {
     const { cart, total } = useSelector(stateCart)
@@ -72,7 +73,9 @@ export default function CartDrawer({ openCart, handleCloseCart }) {
                 >
                     <Box>
                         <Typography variant="subtitle1">Tổng Tiền: </Typography>
-                        <Typography variant="subtitle1">{Math.floor(total)} VNĐ </Typography>
+                        <Typography variant="subtitle1" color="error.main" fontWeight="700">
+                            {formatCurrency(Math.floor(total))}
+                        </Typography>
                     </Box>
                     <Button
                         variant="contained"

@@ -4,20 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import Quantity from '~/components/Quantity'
 import { addCart } from '~/redux/features/cartSlice'
-import { stateAuth, stateCart } from '~/redux/selector'
-
-const _fake = {
-    pid: 2,
-    title: 'Hoa Tulip Trắng',
-    price: 2300000,
-    description: 'Hoa Đẹp Chất Lượng An Toàn',
-    slug: 'hoa-tulip-trang',
-    images: [
-        'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
-        'https://cdn.dealtoday.vn/img/s630x420/e8607ccf80174ce1ba440a2030e33e9b.jpg?sign=PEIbm54veUYFknAykwMNSA',
-    ],
-    discount: 10,
-}
+import { stateAuth } from '~/redux/selector'
+import { formatCurrency } from '~/utilities/helper'
 
 const Detail = ({ product }) => {
     const [quantity, setQuantity] = useState(1)
@@ -43,10 +31,10 @@ const Detail = ({ product }) => {
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             <Typography variant="h4">{product?.title}</Typography>
-            <Typography variant="subtitle2" color="pink" fontFamily="cursive">
+            <Typography variant="subtitle2" color="red" fontFamily="cursive">
                 Giá Sản Phẩm:{' '}
                 <Box component="span" sx={{ textDecoration: product?.discount ? 'line-through' : 'unset' }}>
-                    {product?.price} VNĐ
+                    {product?.price && formatCurrency(product?.price)}
                 </Box>
             </Typography>
             {product?.discount && (
@@ -75,8 +63,10 @@ const Detail = ({ product }) => {
                         -{product?.discount}%
                     </Box>
 
-                    <Box fontFamily="cursive" component="span" color="pink">
-                        Giá Chỉ Còn: {Math.round(product?.price - product?.price / product?.discount)} VNĐ
+                    <Box fontFamily="cursive" component="span" color="red">
+                        Giá Chỉ Còn:{' '}
+                        {product?.price &&
+                            formatCurrency(Math.round(product?.price - product?.price / product?.discount))}{' '}
                     </Box>
                 </Box>
             )}
@@ -84,21 +74,31 @@ const Detail = ({ product }) => {
             <Typography variant="caption" fontWeight={500}>
                 Giá Sản Phẩm Chưa Bao Gồm VAT + Phí Giao Hàng
             </Typography>
-            <Box>
-                <Stack spacing={2}>
-                    <Typography variant="h6">Số Lượng</Typography>
-                    <Quantity quantity={quantity} setQuantity={setQuantity} />
-                </Stack>
-            </Box>
+            {product?.isDeleted == 0 && (
+                <Box>
+                    <Stack spacing={2}>
+                        <Typography variant="h6">Số Lượng</Typography>
+                        <Quantity quantity={quantity} setQuantity={setQuantity} />
+                    </Stack>
+                </Box>
+            )}
             <Typography variant="caption">
                 CAME STORE cam kết hoàn tiền 100% nếu sản phẩm gặp vắn đề trong lúc giao hàng. <br /> Xem
                 <a href="#"> chính sách</a> của chúng tôi
             </Typography>
-            <Box sx={{ my: 4 }}>
-                <Button variant="contained" color="primary" onClick={handleAddCart}>
-                    Thêm Vào Giỏ Hàng
-                </Button>
-            </Box>
+            {product?.isDeleted == 0 ? (
+                <Box sx={{ my: 4 }}>
+                    <Button variant="contained" color="primary" onClick={handleAddCart}>
+                        Thêm Vào Giỏ Hàng
+                    </Button>
+                </Box>
+            ) : (
+                <Box sx={{ my: 4 }}>
+                    <Button variant="contained" color="error">
+                        Sản Phẩm Tạm Hết Hãng
+                    </Button>
+                </Box>
+            )}
         </Box>
     )
 }

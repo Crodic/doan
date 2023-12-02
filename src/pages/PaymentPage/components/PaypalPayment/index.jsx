@@ -11,13 +11,20 @@ const PaypalPayment = ({ amount, address, fullname, formValue }) => {
     const [format, setFormat] = useState([])
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { accessToken } = useSelector(stateAuth)
+    const { accessToken, uid } = useSelector(stateAuth)
     const store = useSelector(stateCart)
 
     useEffect(() => {
         let split = address?.split(', ')
         setFormat(split)
     }, [address])
+
+    useEffect(() => {
+        if (address == '' || formValue.phone == '') {
+            toast('Vui Lòng Nhập Đầy Đủ Thông Tin')
+            navigate(`/payment/${uid}`)
+        }
+    }, [address, formValue])
 
     return (
         <PayPalScriptProvider

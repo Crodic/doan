@@ -20,6 +20,7 @@ import PaypalPayment from './components/PaypalPayment'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchUser } from '~/services/api'
 import { toast } from 'react-toastify'
+import { formatCurrency } from '~/utilities/helper'
 
 const PaymentPage = () => {
     const [disable, setDisable] = useState(true)
@@ -31,13 +32,22 @@ const PaymentPage = () => {
         fullname: userPayment?.fullname || '',
         address: userPayment?.address || '',
         phone: userPayment?.phone || '',
-        email: userPayment?.emaill || '',
+        email: userPayment?.email || '',
     })
+    const [disableButton, setDisableButton] = useState(false)
     const navigate = useNavigate()
     const [payment, setPayment] = useState('offline')
     const handleChangePayment = e => {
         setPayment(e.target.value)
     }
+
+    useEffect(() => {
+        if (formValue.address == '' || formValue.phone == '') {
+            setDisableButton(true)
+        } else {
+            setDisableButton(false)
+        }
+    }, [formValue])
 
     useEffect(() => {
         if (cart?.length <= 0) {
@@ -100,6 +110,7 @@ const PaymentPage = () => {
                             label="Địa Chỉ Nhận Hàng"
                             helperText="VD: 276 Phạm Văn Ninh, Phường 2, Quận 1, TP.HCM"
                             disabled={disable}
+                            style={{ borderColor: formValue.address == '' && 'red' }}
                             value={formValue.address}
                             onChange={e => setFormValue(prev => ({ ...prev, address: e.target.value }))}
                         />
@@ -109,6 +120,7 @@ const PaymentPage = () => {
                             label="Nhập Số Điện Thoại Nhận Hàng"
                             disabled={disable}
                             value={formValue.phone}
+                            style={{ borderColor: formValue.phone == '' && 'red' }}
                             onChange={e => setFormValue(prev => ({ ...prev, phone: e.target.value }))}
                         />
                         <TextField
@@ -153,7 +165,12 @@ const PaymentPage = () => {
                             onChange={handleChangePayment}
                         >
                             <FormControlLabel value="offline" control={<Radio />} label="Thanh Toán Khi Nhận Hàng" />
-                            <FormControlLabel value="online" control={<Radio />} label="Thanh Toán Qua Paypal" />
+                            <FormControlLabel
+                                value="online"
+                                control={<Radio />}
+                                label="Thanh Toán Qua Paypal"
+                                disabled={disableButton}
+                            />
                         </RadioGroup>
                     </FormControl>
                 </Box>
@@ -167,7 +184,7 @@ const PaymentPage = () => {
                     <Divider />
                     <Box sx={{ mt: 2 }}>
                         <Typography variant="h5" color="red">
-                            Tổng Tiền: {Math.floor(total)} VNĐ
+                            Tổng Tiền: {formatCurrency(Math.floor(total))}
                         </Typography>
                     </Box>
                 </Paper>
@@ -177,7 +194,7 @@ const PaymentPage = () => {
                     <DefaultPayment
                         data={{
                             fullname: userPayment?.fullname,
-                            address: userPayment?.address,
+                            address: formValue?.address,
                             phone_number: formValue?.phone,
                             email: formValue?.email,
                             payment_methods: 'trực tiếp',
@@ -185,12 +202,13 @@ const PaymentPage = () => {
                             cart: cart,
                             total_money: total,
                         }}
+                        disable={disableButton}
                     />
                 ) : (
                     <PaypalPayment
                         amount={Math.round(total / 23500)}
                         fullname={userPayment?.fullname}
-                        address={userPayment?.address}
+                        address={formValue?.address}
                         formValue={formValue}
                     />
                 )}

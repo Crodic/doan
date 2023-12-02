@@ -5,12 +5,16 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { Box, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { formatCurrency } from '~/utilities/helper'
+import { useDispatch } from 'react-redux'
+import { deleteProduct } from '~/redux/features/cartSlice'
 
 export default function ShowItem({ cart }) {
     const [cartHandle, setCartHandle] = useState(cart || null)
     const cloudinaryRegex = /cloudinary/i
+    const dispatch = useDispatch()
 
     const handleCartItem = () => {
         let newCart = cart?.map((item, index) => ({
@@ -19,14 +23,11 @@ export default function ShowItem({ cart }) {
             image: item.images[0],
             price: item.price,
             quantity: item.quantity,
-            action: (
-                <Typography key={index} sx={{ cursor: 'pointer' }}>
-                    Xoá
-                </Typography>
-            ),
         }))
         setCartHandle(newCart)
     }
+
+    console.log(cartHandle)
 
     useEffect(() => {
         handleCartItem()
@@ -41,7 +42,6 @@ export default function ShowItem({ cart }) {
                         <TableCell align="right">Tên Sản Phẩm</TableCell>
                         <TableCell align="right">Giá Sản Phẩm</TableCell>
                         <TableCell align="right">Số Lượng</TableCell>
-                        <TableCell align="right">Hành Động</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -61,9 +61,8 @@ export default function ShowItem({ cart }) {
                                 />
                             </TableCell>
                             <TableCell align="right">{row.name}</TableCell>
-                            <TableCell align="right">{row.price}</TableCell>
+                            <TableCell align="right">{formatCurrency(row.price)}</TableCell>
                             <TableCell align="right">{row.quantity}</TableCell>
-                            <TableCell align="right">{row.action}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

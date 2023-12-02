@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
+import { resetCart } from '~/redux/features/cartSlice'
 import { logout, updateAccessToken, updateRefreshToken } from '~/redux/features/userSlice'
 
 let store
@@ -38,10 +39,12 @@ authAxios.interceptors.request.use(
                         config.headers.Authorization = `Bearer ${response.data.accessToken}`
                     } catch (err) {
                         store.dispatch(logout())
+                        store.dispatch(resetCart())
                         return config
                     }
                 } else {
                     store.dispatch(logout())
+                    store.dispatch(resetCart())
                 }
             }
         }

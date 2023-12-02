@@ -7,6 +7,7 @@ import Box from '@mui/material/Box'
 import { useNavigate } from 'react-router-dom'
 import { fetchLogoutUser } from '~/redux/features/userSlice'
 import { toast } from 'react-toastify'
+import { resetCart } from '~/redux/features/cartSlice'
 
 const MenuDrawer = ({ openMenu, handleCloseMenu }) => {
     const { auth } = useSelector(stateAuth)
@@ -19,6 +20,7 @@ const MenuDrawer = ({ openMenu, handleCloseMenu }) => {
                 .unwrap()
                 .then(() => {
                     toast('Đăng Xuất Thành Công')
+                    dispatch(resetCart())
                     navigate('/login')
                 })
                 .catch(err => {

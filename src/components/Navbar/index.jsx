@@ -28,6 +28,7 @@ import { fetchLogoutUser } from '~/redux/features/userSlice'
 import { toast } from 'react-toastify'
 import AlertDialog from '../Alert'
 import { fetchSearchProduct } from '~/services/api'
+import { resetCart } from '~/redux/features/cartSlice'
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -106,6 +107,7 @@ export default function Navbar() {
             .then(() => {
                 handleCloseMenu(false)
                 toast('Đăng Xuất Thành Công')
+                dispatch(resetCart())
             })
             .catch(err => {
                 handleCloseMenu(false)

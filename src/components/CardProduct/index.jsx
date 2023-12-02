@@ -13,9 +13,13 @@ import {
 import { useNavigate } from 'react-router-dom'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight'
+import { formatCurrency } from '~/utilities/helper'
+import { useDispatch } from 'react-redux'
+import { addCart } from '~/redux/features/cartSlice'
 
 const CardProduct = ({ item, widthCard = '250px' }) => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const cloudinaryRegex = /cloudinary/i
 
     const navigateDetail = (id, slug) => {
@@ -47,20 +51,28 @@ const CardProduct = ({ item, widthCard = '250px' }) => {
                                 component="span"
                                 sx={{ textDecoration: item?.discount > 0 ? 'line-through' : 'unset' }}
                             >
-                                {item?.price} VNĐ
+                                {item?.price && formatCurrency(item?.price)}
                             </Box>
                         </Typography>
                         {item?.discount > 0 && (
                             <Typography variant="body2" color="red" fontSize={13}>
                                 Khuyến Mãi:{' '}
-                                <Box component="span">{Math.round(item?.price - item?.price / item?.discount)} VNĐ</Box>
+                                <Box component="span">
+                                    {item?.price &&
+                                        formatCurrency(Math.round(item?.price - item?.price / item?.discount))}
+                                </Box>
                             </Typography>
                         )}
                     </CardContent>
                 </CardActionArea>
                 <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Tooltip title="Giỏ Hàng">
-                        <IconButton>
+                        <IconButton
+                            onClick={() => {
+                                item.quantity = 1
+                                dispatch(addCart(item))
+                            }}
+                        >
                             <AddShoppingCartIcon />
                         </IconButton>
                     </Tooltip>

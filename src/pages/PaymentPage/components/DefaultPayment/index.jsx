@@ -6,12 +6,16 @@ import { resetCart } from '~/redux/features/cartSlice'
 import { stateAuth } from '~/redux/selector'
 import { fetchCreateOrder } from '~/services/api'
 
-const DefaultPayment = ({ data }) => {
+const DefaultPayment = ({ data, disable }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { accessToken } = useSelector(stateAuth)
 
     const handleSubmit = async () => {
+        if (disable) {
+            toast('Vui Lòng Nhập Đầy Đủ Thông Tin Nhận Hàng')
+            return
+        }
         try {
             const res = await fetchCreateOrder(accessToken, data)
             if (res && res.status == 201) {

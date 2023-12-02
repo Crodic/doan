@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { deleteProduct, updateQuantity } from '~/redux/features/cartSlice'
 import { stateCart } from '~/redux/selector'
+import { formatCurrency } from '~/utilities/helper'
 
 const ButtonStyled = styled.button`
     background-color: #bebebe;
@@ -87,7 +88,7 @@ const CartItem = ({ product }) => {
                 '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.2)', cursor: 'pointer' },
             }}
         >
-            <Box sx={{ width: '40%', height: 'auto' }}>
+            <Box sx={{ width: '50%', height: 'auto' }}>
                 <img
                     src={
                         product?.images[0] && cloudinaryRegex.test(product?.images[0])
@@ -98,12 +99,12 @@ const CartItem = ({ product }) => {
                     style={{ width: '100%', height: '100%' }}
                 />
             </Box>
-            <Stack spacing={1} flex={1}>
-                <Typography variant="body1" component="p" noWrap>
+            <Stack spacing={1} flex={1} width="60%">
+                <Typography variant="body1" component="p" noWrap textOverflow="ellipsis">
                     {product?.title}
                 </Typography>
-                <Typography variant="caption" component="p">
-                    Giá: {Math.round(product?.price - product?.price / product?.discount)} VNĐ
+                <Typography variant="caption" component="p" color="secondary.main">
+                    Giá: {formatCurrency(Math.round(product?.price - product?.price / product?.discount))}
                 </Typography>
                 <BoxStyled>
                     <ButtonStyled onClick={handleDecrement}>-</ButtonStyled>

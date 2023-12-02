@@ -40,7 +40,7 @@ const CartSlice = createSlice({
                     state.total - (findProduct.price - findProduct.price / findProduct.discount) * findProduct.quantity
             }
         },
-        resetCart: (state, action) => {
+        resetCart: state => {
             state.cart = []
             state.quantity = 0
             state.total = 0

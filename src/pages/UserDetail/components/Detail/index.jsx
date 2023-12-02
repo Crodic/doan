@@ -12,6 +12,7 @@ import PasswordModal from '../PasswordModal'
 const UserInformation = ({ user }) => {
     const [open, setOpen] = useState(false)
     const [openPassword, setOpenPassword] = useState(false)
+    console.log(user)
 
     const handleClickOpen = () => {
         setOpen(true)
@@ -110,13 +111,16 @@ const UserInformation = ({ user }) => {
                                     <InformationData title="Điện Thoại" value={user?.phone ? user.phone : 'Trống'} />
                                 </Grid>
                                 <Grid item md={6} xs={12} sx={{ marginY: { md: '0px', xs: '10px' } }}>
-                                    <InformationData title="Trạng Thái" value={user?.status ? 'An Toàn' : 'Bị Khoá'} />
+                                    <InformationData
+                                        title="Trạng Thái"
+                                        value={user?.status == 0 ? 'An Toàn' : 'Bị Khoá'}
+                                    />
                                 </Grid>
                             </Grid>
                             <Divider variant="middle" />
                             <Grid container sx={{ margin: '30px 0px 30px 20px' }}>
                                 <Grid item md={12}>
-                                    <InformationData title="Tổng Số Hoá Đơn" value="0" />
+                                    <InformationData title="Tổng Số Hoá Đơn" value={user?.total} />
                                 </Grid>
                             </Grid>
                             <Divider variant="middle" />

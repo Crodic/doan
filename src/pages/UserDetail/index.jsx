@@ -41,6 +41,7 @@ const UserDetailPage = () => {
                     address: res.data.user.address,
                     phone: res.data.user.phone,
                     status: res.data.user.isDeleted,
+                    total: res.data.user.total,
                 }
                 setUser(data)
             }

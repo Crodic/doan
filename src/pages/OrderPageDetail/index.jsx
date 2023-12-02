@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { Box, Divider, Paper, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -85,7 +86,13 @@ const OrderPageDetail = () => {
                         <Box component="li" sx={{ mt: '10px' }}>
                             Trạng Thái Đơn Hàng:{' '}
                             <Typography component="span" color="green">
-                                {bill?.status == 1 ? 'Chờ Xác Nhận' : bill?.status == 2 ? 'Đang Giao Hàng' : bill?status == 3 ? 'Thành Công' : 'Đã Huỷ'}
+                                {bill?.status == 1
+                                    ? 'Chờ Xác Nhận'
+                                    : bill?.status == 2
+                                    ? 'Đang Giao Hàng'
+                                    : bill?.status == 3
+                                    ? 'Thành Công'
+                                    : 'Đã Huỷ'}
                             </Typography>
                         </Box>
                     </Box>
