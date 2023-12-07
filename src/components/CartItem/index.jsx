@@ -88,7 +88,7 @@ const CartItem = ({ product }) => {
                 '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.2)', cursor: 'pointer' },
             }}
         >
-            <Box sx={{ width: '50%', height: 'auto' }}>
+            <Box sx={{ width: '120px', height: '120px' }}>
                 <img
                     src={
                         product?.images[0] && cloudinaryRegex.test(product?.images[0])
@@ -96,7 +96,7 @@ const CartItem = ({ product }) => {
                             : `http://localhost/mvc${product?.images[0]}`
                     }
                     alt=""
-                    style={{ width: '100%', height: '100%' }}
+                    style={{ width: '100%', objectFit: 'cover' }}
                 />
             </Box>
             <Stack spacing={1} flex={1} width="60%">

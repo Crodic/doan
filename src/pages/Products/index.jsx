@@ -2,7 +2,7 @@ import { Container, Divider, Grid, Stack, Typography } from '@mui/material'
 import ListProducts from './components/Lists'
 import SelectCategory from './components/SelectCategory'
 import PaginateProduct from '~/components/Paginate'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import SelectOrderBy from './components/SelectOrderBy'
 import { useEffect, useState } from 'react'
 import { fetchProduct, fetchSearchProduct } from '~/services/api'
@@ -16,6 +16,7 @@ const ProductsPage = () => {
     const [price, setPrice] = useState(searchParams.get('sort') || null)
     const [page, setPage] = useState(1)
     const [totalPage, setTotalPage] = useState(0)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (!search && !value) {
@@ -61,6 +62,7 @@ const ProductsPage = () => {
     const handleClear = () => {
         setCategory(null)
         setPrice(null)
+        navigate('/product')
     }
 
     return (
@@ -83,7 +85,7 @@ const ProductsPage = () => {
                 <Grid item xs={12} md={9}>
                     <Grid container>
                         <Grid item xs={12}>
-                            {search && <Typography>Đã Tìm Thấy 1000 Sản Phẩm</Typography>}
+                            {search && <Typography>Đã Tìm Thấy {products.length} Sản Phẩm</Typography>}
                             <Divider variant="middle">
                                 <Typography variant="h5" color="blueviolet">
                                     Danh Sách Các Loại Hoa
