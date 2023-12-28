@@ -47,13 +47,13 @@ const PaypalPayment = ({ amount, address, fullname, formValue }) => {
                                 },
                                 shipping: {
                                     name: {
-                                        full_name: fullname,
+                                        full_name: fullname || 'Khách Hàng',
                                     },
                                     address: {
-                                        address_line_1: format[0] || '',
-                                        address_line_2: `${(format[1] || '', format[2] || '')}`,
+                                        address_line_1: format[0] || 'Quận 8',
+                                        address_line_2: `${(format[1] || 'TP.HCM', format[2] || 'TP.HCM')}`,
                                         admin_area_1: 'VN',
-                                        admin_area_2: format[3] || '',
+                                        admin_area_2: format[3] || 'Việt Nam',
                                         postal_code: '85001',
                                         country_code: 'US',
                                     },

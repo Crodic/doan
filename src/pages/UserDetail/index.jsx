@@ -20,13 +20,6 @@ const UserDetailPage = () => {
     }, [auth, navigate])
 
     useEffect(() => {
-        if (uid !== userParams) {
-            navigate('/')
-            toast.warning('Định Danh Người Dùng Không Chính Xác')
-        }
-    }, [])
-
-    useEffect(() => {
         fetchDataUser(accessToken)
     }, [accessToken])
 
